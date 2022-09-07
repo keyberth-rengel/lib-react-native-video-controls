@@ -1,0 +1,23 @@
+{
+  "name": "lib-react-native-video-controls-example",
+  "displayName": "LibReactNativeVideoControls Example",
+  "expo": {
+    "name": "lib-react-native-video-controls-example",
+    "slug": "lib-react-native-video-controls-example",
+    "description": "Example app for lib-react-native-video-controls",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "jsEngine": "hermes",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
