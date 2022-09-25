@@ -73,6 +73,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
+    "react-native-video": ">=5.2.0",
     "react-native-enable-pip-in-android": "*"
   },
   "jest": {

@@ -51,6 +51,7 @@ export default class VideoPlayer extends Component {
       muted: this.props.muted,
       volume: this.props.volume,
       rate: this.props.rate,
+      isEnabledPip: false,
       // Controls
 
       isFullscreen:
@@ -96,6 +97,7 @@ export default class VideoPlayer extends Component {
       onExitFullscreen: this.props.onExitFullscreen,
       onShowControls: this.props.onShowControls,
       onHideControls: this.props.onHideControls,
+      onEnabledPip: this.props.onEnabledPip,
       onLoadStart: this._onLoadStart.bind(this),
       onProgress: this._onProgress.bind(this),
       onSeek: this._onSeek.bind(this),
@@ -979,7 +981,7 @@ export default class VideoPlayer extends Component {
         <SafeAreaView style={styles.controls.topControlGroup}>
           {backControl}
           <View style={styles.controls.pullRight}>
-            {volumeControl}
+            {!this.state.isEnabledPip ? volumeControl : null}
             {fullscreenControl}
           </View>
           {Platform.OS === 'android' &&
@@ -1010,14 +1012,17 @@ export default class VideoPlayer extends Component {
   renderPip() {
     const pictureInPictureStart = () => {
       this._onScreenTouch();
+      if (typeof this.events.onEnabledPip === 'function') {
+        this.events.onEnabledPip(!this.state.isEnabledPip);
+      }
 
       setTimeout(() => {
         this.setState({
           ...this.state,
-          pictureInPictureStart: true,
+          isEnabledPip: !this.state.isEnabledPip,
         });
-        enterPictureInPictureMode();
-      }, 500);
+        // enterPictureInPictureMode();
+      }, 0);
     };
 
     return this.renderControl(
